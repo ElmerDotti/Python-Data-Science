@@ -1,81 +1,67 @@
-# pytrain
+# Copper price forecast
 
-Machine Learning library for python 
+This is an open source project aims at making a prediction of copper price using machine learning / deep learning approach. The language of this project is Python and the ideas may extend to other time series prediction problems as you like.
 
-This library implemented only with python and numpy
+# Motivation
 
-![alt text](https://github.com/becxer/pytrain/raw/master/tmp/logo_pytrain.png "pytrain")
+The motivation of launching this project is that copper is a kind of important raw material of some midstream and downstream materials, whose price is of great relevance to copper price. Thus a high accuracy of copper price prediction can to some extent providing purchasing decisions for the purchasing agent.
 
-## Algorithms
+Here is a comparison of the fluctuation of the price of cooper and a kind of downstream material:
 
-+ Decision Tree(ID3)
-+ Gaussian NaiveBayes
-+ NaiveBayes
-+ KNN
-+ Neural Network(FNN)
-+ Logistic Regression
-+ Linear Regression
-+ DBSCAN
-+ Apriori
-+ Kmeans
-+ HierarchicalClustering
-+ SVM
-+ SVC (SVM classifier)
-+ HMM 
-+ CRF 
+![image](https://github.com/liyinwei/res/raw/master/2017/copper_price_readme_1.png)
 
-## Requirements
+# Prerequisites
 
- - Numpy
- - Python 2 or 3
+- [Python](https://www.python.org/) 3.5 + 
+- [numpy](http://www.numpy.org/) 1.13.0 + 
+- [pandas](http://pandas.pydata.org/) 0.20.2 + 
+- [scikit-learn](http://scikit-learn.org/stable/) 0.18.1 + 
+- [Keras](https://keras.io/) 2.0.4 + 
+- [tensorflow](https://www.tensorflow.org/) 1.1.0 + 
+- [matplotlib](http://matplotlib.org/) 2.0.2 +
+- [mysql-connector-python-rf](https://pypi.python.org/pypi/mysql-connector-python-rf) 2.2.2 + 
 
-## Installation
+# Structure
+- [common](https://github.com/liyinwei/copper_price_forecast/tree/master/common): common method such as data loading, model evaluation & model visualization etc.
+- [mlp](https://github.com/liyinwei/copper_price_forecast/tree/master/mlp): predict copper price using sklearn.neural_network.MLPRegressor
+- [lstm](https://github.com/liyinwei/copper_price_forecast/tree/master/lstm): predict copper price using keras.layers.recurrent.LSTM
+- [pcb](https://github.com/liyinwei/copper_price_forecast/tree/master/pcb): correlation analysis of copper and a downstream material price
 
-    $ sudo pip install --upgrade pytrain
-    
-## Basic Usage
+# Data
+You can visit the [spiders project](https://github.com/liyinwei/spiders) and run [shfe](https://github.com/liyinwei/spiders/tree/master/shfe) to crawling copper future price from [Shanghai Futures Exchange](http://www.shfe.com.cn/).
 
-    import numpy as np
-    from pytrain.NeuralNetwork import FNN
+# Running
+There is a main method in each python file so you can run it easily.
 
-    # Simple dataset
-    train_mat = [[0.12,0.25],[3.24,4.33],[0.14,0.45],[7.30,4.23]]
-    train_label = [[0,1],[1,0],[0,1],[1,0]]
+the following is a sample of predict result of the [mlp](https://github.com/liyinwei/copper_price_forecast/tree/master/mlp) method:
 
-    test_a = [0.10,0.33]
-    test_b = [4.0,4.5]
+![image](https://github.com/liyinwei/res/raw/master/2017/copper_price_readme_2.png)
 
-    # Train model (FNN)
-    hidden_layer = [3,2]
-    fnn = FNN(train_mat, train_label, hidden_layer)
-    fnn.fit(lr = 0.01, epoch = 2000, err_th = 0.001, batch_size = 4)
+while the following is a sample of predict result of the [lstm](https://github.com/liyinwei/copper_price_forecast/tree/master/lstm) method with epochs=500:
 
-    # Test model (FNN)
-    res_a = np.rint(fnn.predict(test_a))
-    res_b = np.rint(fnn.predict(test_b))
+![image](https://github.com/liyinwei/res/raw/master/2017/copper_price_readme_3.png)
 
-    print("X %s => Y %s" % (test_a, res_a))
-    print("X %s => Y %s" % (test_b, res_b))
+# Authors
+- [Yinwei Li](https://github.com/liyinwei)
+  - **wechat**: coridc
+  - **email**: 251469031@qq.com
 
-    ———————— output ————————
+*Don't hesitate to contact me on any topics about this project at your convenience.*
 
-    X [0.1, 0.33] => Y [ 0.  1.]
-    X [4.0, 4.5] => Y [ 1.  0.]
 
-[See more examples here](https://github.com/becxer/pytrain/tree/master/examples)
+# Contributors
+- [Yinwei Li](https://github.com/liyinwei)
 
-## How to contribute
 
-    Fork this repository, and write your algorithm, pull request.
-    Don't forgot proper test code in test_pytrain.
-    Test code should be work successfully in below command.
-    
-    $ python test.py
+# Contributing
 
-## Reference
+When contributing to this repository, you can first discuss the change you wish to make via issue, email, or any other method with the owners of this repository.
 
- - Machine Learning in Action by Peter Harrington (2013)
- - Pattern Recognition by Ohilseok (2008)
- - Machine Learning to Deep Learning by Deepcumen (2015)
- - Pattern Recognition and Machine Learning by Christopher M. Bishop (2006)
- - Sequential Minimal Optimization for SVM by John C.Platt (1998)
+
+# License
+
+This project is licensed under the [GNU General Public License v3.0](http://www.gnu.org/licenses/gpl-3.0.html) License - see the [LICENSE](https://github.com/liyinwei/copper_price_forecast/blob/master/LICENSE) file for details.
+
+# Acknowledgments
+
+I'd like hat tip to anyone who use the codes or send me any proposals of the project.
